@@ -2,10 +2,10 @@
 Test Cases TestAccountModel
 """
 import json
-from random import randrange
 from unittest import TestCase
 from models import db
 from models.account import Account, DataValidationError
+import secrets
 
 ACCOUNT_DATA = {}
 
@@ -27,7 +27,7 @@ class TestAccountModel(TestCase):
 
     def setUp(self):
         """Truncate the tables"""
-        self.rand = randrange(0, len(ACCOUNT_DATA))
+        self.rand = secrets.SystemRandom().randrange(0, len(ACCOUNT_DATA))
         db.session.query(Account).delete()
         db.session.commit()
 
