@@ -17,7 +17,7 @@ class IMDb:
     def search_titles(self, title) -> dict:
         """Search for a movie by Title"""
         logger.info("Searching IMDb for Title: %s", title)
-        results = requests.get(f"https://imdb-api.com/API/SearchTitle/{self.apikey}/{title}")
+        results = requests.get(f"https://imdb-api.com/API/SearchTitle/{self.apikey}/{title}", timeout=60)
         if results.status_code == 200: 
             return results.json()
         return {}
@@ -25,7 +25,7 @@ class IMDb:
     def movie_reviews(self, imdb_id: str) -> dict:
         """Get reviews for a movie"""
         logger.info("Searching IMDb for Reviews: %s", imdb_id)
-        results = requests.get(f"https://imdb-api.com/API/Reviews/{self.apikey}/{imdb_id}")
+        results = requests.get(f"https://imdb-api.com/API/Reviews/{self.apikey}/{imdb_id}", timeout=60)
         if results.status_code == 200: 
             return results.json()
         return {}
@@ -33,7 +33,7 @@ class IMDb:
     def movie_ratings(self, imdb_id: str) -> dict:
         """Get ratings for a movie"""
         logger.info("Searching IMDb for Ratings: %s", imdb_id)
-        results = requests.get(f"https://imdb-api.com/API/Ratings/{self.apikey}/{imdb_id}")
+        results = requests.get(f"https://imdb-api.com/API/Ratings/{self.apikey}/{imdb_id}", timeout=60)
         if results.status_code == 200: 
             return results.json()
         return {}
